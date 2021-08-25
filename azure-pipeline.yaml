@@ -15,3 +15,8 @@ jobs:
     displayName: Install Terraform 1.0.3
     inputs:
       terraformVersion: 1.0.3
+- job: QualityTestJob
+  displayName: Run TFSec
+  steps:
+  - bash: |
+      docker run --rm -t -v $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src
