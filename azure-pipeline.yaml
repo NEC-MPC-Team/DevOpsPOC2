@@ -1,0 +1,17 @@
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: main
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: vs2017-win2016
+  steps:
+  - checkout: self
+    clean: true
+  - task: TerraformInstaller@0
+    displayName: Install Terraform 1.0.3
+    inputs:
+      terraformVersion: 1.0.3
