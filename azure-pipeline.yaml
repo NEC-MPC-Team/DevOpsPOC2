@@ -24,6 +24,8 @@ jobs:
       backendAzureRmContainerName: tfstateblobpoc2
       backendAzureRmKey: terraform.tfstate
 - job: QualityTestJob
+  dependsOn: Job_1
+  condition: succeeded()
   displayName: Run TFSec
   steps:
   - bash: |
