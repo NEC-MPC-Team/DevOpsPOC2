@@ -1,5 +1,5 @@
 variables:
-  terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/samples/integration-testing/src'
+  terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/src'
 resources:
   repositories:
   - repository: self
