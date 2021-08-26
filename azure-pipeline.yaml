@@ -19,9 +19,9 @@ jobs:
     displayName: 'Terraform : init'
     inputs:
       backendServiceArm: fec0b219-a96f-4884-a16d-4ef8a32ceffb
-      backendAzureRmResourceGroupName: NECDevopsPipelineRG1
-      backendAzureRmStorageAccountName: devopspipelinestorage2
-      backendAzureRmContainerName: tfstateblob1
+      backendAzureRmResourceGroupName: DevOpsPOC2RG
+      backendAzureRmStorageAccountName: devopspoc2storage1
+      backendAzureRmContainerName: tfstateblobpoc2
       backendAzureRmKey: terraform.tfstate
 - job: QualityTestJob
   displayName: Run TFSec
