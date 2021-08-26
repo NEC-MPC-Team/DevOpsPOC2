@@ -27,4 +27,4 @@ jobs:
   displayName: Run TFSec
   steps:
   - bash: |
-      docker run --rm -t -v $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src
+      docker run --rm -t -v $(System.DefaultWorkingDirectory): liamg/tfsec
