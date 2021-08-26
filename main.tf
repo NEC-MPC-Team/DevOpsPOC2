@@ -1,3 +1,7 @@
+provider "azurerm" {
+  features {}
+}
+
 resource "random_integer" "rand" {
   min = 1000
   max = 9999
