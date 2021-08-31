@@ -33,3 +33,11 @@ jobs:
   steps:
   - bash: |
       docker run --rm -t -v $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src
+- job: QualityTestJob2
+  dependsOn: QualityTestJob
+  condition: succeeded()
+  displayName: Run Checkov
+  steps:
+  - bash: |
+      docker pull bridgecrew/checkov
+      docker run --tty --volume /user/tf:/tf bridgecrew/checkov --directory /tf
