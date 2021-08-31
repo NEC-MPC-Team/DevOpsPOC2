@@ -33,11 +33,26 @@ jobs:
   steps:
   - bash: |
       docker run --rm -t -v $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src
-- job: QualityTestJob2
-  dependsOn: QualityTestJob
-  condition: succeeded()
-  displayName: Run Checkov
+- job: "runCheckov"
+  displayName: "Checkov > Pull, run and publish results of Checkov scan"
   steps:
-  - bash: |
-      docker pull bridgecrew/checkov
-      docker run --tty --volume /user/tf:/tf bridgecrew/checkov --directory /tf
+          - bash: |
+                            docker pull bridgecrew/checkov
+            workingDirectory: $(System.DefaultWorkingDirectory)
+            displayName: "Pull > bridgecrew/checkov"
+          - bash: |
+              docker run \
+                --volume $(pwd):/tf bridgecrew/checkov \
+                --directory /tf \
+                --output junitxml \
+                --soft-fail > $(pwd)/CheckovReport.xml              
+            workingDirectory: $(System.DefaultWorkingDirectory)
+            displayName: "Run > checkov"
+          - task: PublishTestResults@2
+            inputs:
+              testRunTitle: "Checkov Results"
+              failTaskOnFailedTests: true
+              testResultsFormat: "JUnit"
+              testResultsFiles: "CheckovReport.xml"
+              searchFolder: "$(System.DefaultWorkingDirectory)"
+            displayName: "Publish > Checkov scan results"
