@@ -26,14 +26,6 @@ jobs:
           backendAzureRmStorageAccountName: devopspoc2storage1
           backendAzureRmContainerName: tfstateblobpoc2
           backendAzureRmKey: terraform.tfstate
-  - job: QualityTestJob
-    dependsOn: Job_1
-    condition: succeeded()
-    displayName: Run TFSec
-    steps:
-      - bash: >
-          docker run --rm -t -v $(System.DefaultWorkingDirectory):/src
-          liamg/tfsec ./src
   - job: runCheckov
     dependsOn: Job_1
     condition: succeeded()
@@ -48,7 +40,7 @@ jobs:
         displayName: DockerListFiles
       - bash: |
           docker run \
-            --volume $(System.DefaultWorkingDirectory):/src bridgecrew/checkov \
+            --volume $(pwd):/src bridgecrew/checkov \
             --directory /src \
             --output junitxml \
             --soft-fail > $(pwd)/CheckovReport.xml              
