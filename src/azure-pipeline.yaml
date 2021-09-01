@@ -44,6 +44,9 @@ jobs:
         workingDirectory: $(System.DefaultWorkingDirectory)
         displayName: Pull > bridgecrew/checkov
       - bash: |
+          docker ls -all
+        displayName: DockerListFiles
+      - bash: |
           docker run \
             --volume $(pwd):/tf bridgecrew/checkov \
             --directory /tf \
