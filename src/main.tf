@@ -99,7 +99,7 @@ resource "azurerm_linux_virtual_machine" "vm1" {
 ## Linux VM 2
 
 resource "azurerm_network_interface" "nic2" {
-  name                = "nic-vm-linux-new-name
+  name                = "nic-vm-linux-new-name2
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
