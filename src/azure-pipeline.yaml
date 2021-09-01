@@ -48,8 +48,8 @@ jobs:
         displayName: DockerListFiles
       - bash: |
           docker run \
-            --volume $(pwd):/tf bridgecrew/checkov \
-            --directory /tf \
+            --volume $(System.DefaultWorkingDirectory):/src bridgecrew/checkov \
+            --directory /src \
             --output junitxml \
             --soft-fail > $(pwd)/CheckovReport.xml              
         workingDirectory: $(System.DefaultWorkingDirectory)
