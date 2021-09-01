@@ -41,7 +41,6 @@ jobs:
       - bash: |
           docker run \
             --volume $(pwd):/src bridgecrew/checkov \
-            --directory /src \
             --output junitxml \
             --soft-fail > $(pwd)/CheckovReport.xml              
         workingDirectory: $(System.DefaultWorkingDirectory)
