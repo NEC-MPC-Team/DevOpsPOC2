@@ -34,6 +34,11 @@ jobs:
       - bash: >
           docker run --rm -t -v $(System.DefaultWorkingDirectory):/src
           liamg/tfsec ./src
+  - job: RunTfLint
+    displayName: Tflint
+    steps:
+      - bash: >
+          docker run --rm -v $(System.DefaultWorkingDirectory):/src -t ghcr.io/terraform-linters/tflint
   - job: runCheckov
     dependsOn: Job_1
     condition: succeeded()
