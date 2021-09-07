@@ -38,7 +38,7 @@ jobs:
     displayName: Tflint
     steps:
       - bash: >
-          docker run --rm -v $(System.DefaultWorkingDirectory):/src -t ghcr.io/terraform-linters/tflint-bundle
+          docker run --rm -v $(System.DefaultWorkingDirectory):/src -t ghcr.io/terraform-linters/tflint-bundle ./src
   - job: runCheckov
     dependsOn: Job_1
     condition: succeeded()
