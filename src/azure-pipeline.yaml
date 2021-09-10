@@ -58,7 +58,7 @@ jobs:
             --output junitxml \
             --soft-fail > $(pwd)/CheckovReport.xml              
         workingDirectory: $(System.DefaultWorkingDirectory)
-        displayName: Run > checkov
+        displayName: Run > checkov 
       - task: PublishTestResults@2
         inputs:
           testRunTitle: Checkov Results
